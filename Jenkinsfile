@@ -11,7 +11,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/YOUR_GITHUB_USERNAME/food-delivery-order-system.git'
+                    url: 'https://github.com/Vijay-Kumar2309/food-delivery-order-system.git'
             }
         }
 
