@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: food-delivery-service
+spec:
+  selector:
+    app: food-delivery
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
