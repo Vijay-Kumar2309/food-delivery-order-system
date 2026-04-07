@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: food-delivery
-          image: YOUR_DOCKERHUB_USERNAME/food-delivery-order-system:latest
+          image: 23MIS0432/food-delivery-order-system:latest
           ports:
             - containerPort: 8080
