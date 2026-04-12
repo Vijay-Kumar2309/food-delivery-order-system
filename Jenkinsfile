@@ -59,6 +59,8 @@ pipeline {
                     powershell '''
                         $pass = $env:DOCKER_PASS
                         $user = $env:DOCKER_USER
+                        echo "Username: $user"
+                        echo "Password length: $($pass.Length)"
                         $pass | docker login -u $user --password-stdin
                         if ($LASTEXITCODE -ne 0) {
                             throw "Docker login failed"
