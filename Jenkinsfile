@@ -57,28 +57,6 @@ pipeline {
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     powershell '''
-                        # Create docker config directory if it doesn't exist
-                        $dockerDir = "$env:USERPROFILE\.docker"
-                        if (-not (Test-Path $dockerDir)) {
-                            New-Item -ItemType Directory -Path $dockerDir -Force | Out-Null
-                        }
-                        
-                        # Encode credentials in base64
-                        $credentials = "$env:DOCKER_USER`:$env:DOCKER_PASS"
-                        $encoded = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($credentials))
-                        
-                        # Create docker config.json
-                        $config = @{
-                            auths = @{
-                                "https://index.docker.io/v1/" = @{
-                                    auth = $encoded
-                                }
-                            }
-                        } | ConvertTo-Json
-                        
-                        $config | Set-Content -Path "$dockerDir\config.json" -Force
-                        
-                        # Verify login
                         docker login -u $env:DOCKER_USER -p $env:DOCKER_PASS
                         if ($LASTEXITCODE -ne 0) {
                             throw "Docker login failed"
