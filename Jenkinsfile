@@ -56,12 +56,6 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    powershell '''
-                        docker login -u $env:DOCKER_USER -p $env:DOCKER_PASS
-                        if ($LASTEXITCODE -ne 0) {
-                            throw "Docker login failed"
-                        }
-                    '''
                     bat "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
