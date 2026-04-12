@@ -34,6 +34,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
+<<<<<<< HEAD
                 script {
                     // Check if Docker daemon is running
                     def dockerStatus = bat(script: 'docker ps > nul 2>&1', returnStatus: true)
@@ -44,6 +45,9 @@ pipeline {
                         currentBuild.result = 'UNSTABLE'
                     }
                 }
+=======
+                bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+>>>>>>> a458ca0cc8d0b5217ce3858ee77a78cc8eeb8a63
             }
         }
 
@@ -57,7 +61,11 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
+<<<<<<< HEAD
                     bat "echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin"
+=======
+                    bat "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+>>>>>>> a458ca0cc8d0b5217ce3858ee77a78cc8eeb8a63
                     bat "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
