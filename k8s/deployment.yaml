@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: food-delivery-app
+  name: Notes-Management-System
   labels:
     app: food-delivery
 spec:
